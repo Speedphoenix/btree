@@ -1,5 +1,4 @@
 #include "node.h"
-#include "testing.h"
 
 void		rb_check_edges(t_rb_tree *cont, t_rb_node *what)
 {

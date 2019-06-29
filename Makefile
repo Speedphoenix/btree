@@ -1,8 +1,6 @@
 NAME			=	libbtree.a
 LIBNAME			=	btree
 
-TESTINGNAME		=	test.out
-
 CC				=	gcc
 
 AR				=	ar
@@ -18,7 +16,7 @@ SRDIRS			=	.
 
 DEFAULTFLAGS	=	-O2 $(WARNINGS)
 
-INCLUDEPFLAGS	=	-Itesting/ -I.
+INCLUDEPFLAGS	=	-I.
 
 CFLAGS			=	$(DEFAULTFLAGS) $(INCLUDEPFLAGS)
 
@@ -33,18 +31,10 @@ SRC				:=	basic_modifs.c								\
 					rb_destroy.c								\
 					rb_remove.c
 
-TESTINGSRC		:=	testing/main.c								\
-					testing/main_checks.c						\
-					testing/displays.c							\
-					testing/btree_apply_by_level.c				\
-					testing/saveHTML.c							\
-					testing/check_remove.c
-
 # $(wildcard $(addsuffix /*.cpp, $(SRDIRS)))
 
 OBJ				:=	$(SRC:.c=.o)
 
-TESTINGOBJ		:=	$(TESTINGSRC:.c=.o)
 
 LDLIBS			:=	-l$(LIBNAME)
 
@@ -54,25 +44,13 @@ TSTINGLDLIBS	:=
 
 RM				=	/bin/rm -f
 
-.PHONY: all clean fclean re cleantest fcleantest retest dotests
+.PHONY: all clean fclean re
 
 $(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 	$(INDEXER) $(NAME)
 
-$(TESTINGNAME): $(NAME) $(TESTINGOBJ)
-	$(CC) -o $(TESTINGNAME) $(TESTINGOBJ) $(LDFLAGS) $(LDLIBS)
-
-dotests: $(TESTINGNAME)
-	./$(TESTINGNAME)
-
-all: $(NAME) $(TESTINGNAME)
-
-cleantest:
-	$(RM) $(TESTINGOBJ)
-
-fcleantest: cleantest
-	$(RM) $(TESTINGNAME)
+all: $(NAME)
 
 clean:
 	$(RM) $(OBJ)
@@ -80,6 +58,4 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean fcleantest $(NAME)
-
-retest: re $(TESTINGNAME)
+re: fclean $(NAME)
