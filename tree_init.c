@@ -22,3 +22,22 @@ t_rb_tree	*rb_create_tree(t_compare_func compare)
 	}
 	return (rep);
 }
+
+void		rb_reset_edge(t_rb_tree *tree, enum e_rb_direction dir)
+{
+	t_rb_node	*curr;
+
+	if (tree->root == &g_leaf)
+	{
+		tree->begin = &g_leaf;
+		tree->end = &g_leaf;
+		return;
+	}
+	curr = tree->root;
+	while (curr->children[dir] != &g_leaf)
+		curr = curr->children[dir];
+	if (dir == RB_LEFT)
+		tree->begin = curr;
+	else
+		tree->end = curr;
+}

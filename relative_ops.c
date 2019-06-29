@@ -15,6 +15,9 @@ int			rb_rotate(t_rb_node *root, enum e_rb_direction dir)
 	return (1);
 }
 
+/*
+**	Returns the child that was kicked out of the parent
+*/
 t_rb_node	*rb_set_new_parent(t_rb_node *what, t_rb_node *parent,
 				enum e_rb_direction dir)
 {

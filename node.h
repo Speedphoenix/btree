@@ -41,7 +41,9 @@ void					rb_add_child(t_rb_tree *cont, t_rb_node *what,
 							t_rb_node *parent, enum e_rb_direction dir);
 t_rb_node				*rb_stupid_insert(t_rb_tree *container,
 							t_rb_node *what);
-void					rb_swap_user_contents(t_rb_node *a, t_rb_node *b);
+void					rb_swap_user_contents(t_rb_node **a, t_rb_node **b);
+
+void					rb_reset_edge(t_rb_tree *tree, enum e_rb_direction dir);
 
 int						rb_rotate(t_rb_node *root, enum e_rb_direction dir);
 t_rb_node				*rb_set_new_parent(t_rb_node *what, t_rb_node *parent,
@@ -53,7 +55,8 @@ void					rb_correct_insert(t_rb_node *new_elem);
 void					rb_insert_last_case(t_rb_node *new_el);
 
 void					rb_node_destroy(t_rb_node *what);
-void					rb_subtree_destroy(t_rb_node *root);
+void					rb_subtree_destroy(t_rb_node *root,
+							void (*applyf)(t_key, t_data));
 
 void					btree_recurs_prefix(t_rb_node *root,
 							void (*applyf)(t_key, t_data));
@@ -69,5 +72,10 @@ t_rb_node				*rb_node_in_dir(t_rb_node *where,
 							enum e_rb_direction dir, int fromChild);
 t_rb_node				*rb_next_node(t_rb_node *where);
 t_rb_node				*rb_prev_node(t_rb_node *where);
+
+void					rb_rebalance_last_case_rem(t_rb_node *to_remove);
+t_rb_node				*rb_remove_node(t_rb_tree *tree, t_rb_node *to_remove);
+
+enum e_rb_direction		rb_alternate_dir(void);
 
 #endif

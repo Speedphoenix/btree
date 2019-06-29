@@ -10,8 +10,10 @@
 /*
 **	t_data MUST be a pointer type
 */
-typedef void			*t_key;
+typedef int				t_key;
 typedef void			*t_data;
+
+# define DEFAULTKEY 0
 
 /*
 ** A compare function must behave like the '<' operator
@@ -38,14 +40,13 @@ void					btree_traverse_meth(t_rb_tree *cont, unsigned method,
 							void (*applyf)(t_key, t_data));
 int						rb_insert(t_rb_tree *tree, t_key key, t_data data);
 
-void					rb_tree_vacate(t_rb_tree *tree);
-void					rb_tree_destroy(t_rb_tree *tree);
+void					rb_tree_vacate(t_rb_tree *tree,
+							void (*applyf)(t_key, t_data));
+void					rb_tree_destroy(t_rb_tree *tree,
+							void (*applyf)(t_key, t_data));
 
 /*
-**	TODO
-*/
-/*
-**	Returns the value after destroying he node that contained it
+**	Returns the value after destroying the node that contained it
 */
 t_data					rb_remove(t_rb_tree *tree, t_key key);
 

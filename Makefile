@@ -36,7 +36,9 @@ SRC				:=	basic_modifs.c								\
 TESTINGSRC		:=	testing/main.c								\
 					testing/main_checks.c						\
 					testing/displays.c							\
-					testing/btree_apply_by_level.c
+					testing/btree_apply_by_level.c				\
+					testing/saveHTML.c							\
+					testing/check_remove.c
 
 # $(wildcard $(addsuffix /*.cpp, $(SRDIRS)))
 
