@@ -1,7 +1,7 @@
 #ifndef NODE_H
 # define NODE_H
 
-# include "rb_btree.h"
+# include "btree.h"
 # define RB_NBDIRS 2
 
 enum					e_rb_direction

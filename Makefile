@@ -1,7 +1,7 @@
 NAME			=	btree
 LIBNAME			=	libbtree.a
 
-USERINCLUDE		=	rb_btree.h
+USERINCLUDE		=	btree.h
 
 CC				=	gcc
 
@@ -61,11 +61,13 @@ $(LIBNAME): $(OBJ)
 
 all: $(NAME)
 
-install: $(LIBNAME)
+installmv: $(LIBNAME)
 	$(INSTALL) -d $(LIBDEST)
 	$(INSTALL) -m 644 $(LIBNAME) $(LIBDEST)
 	$(INSTALL) -d $(INCLUDEDEST)
 	$(INSTALL) -m 644 $(USERINCLUDE) $(INCLUDEDEST)
+
+install: | installmv fclean
 
 uninstall:
 	$(RM) $(LIBDEST)$(LIBNAME)
