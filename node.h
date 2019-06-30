@@ -1,7 +1,7 @@
 #ifndef NODE_H
 # define NODE_H
 
-# include "btree.h"
+# include "rb_btree.h"
 # define RB_NBDIRS 2
 
 enum					e_rb_direction
@@ -58,11 +58,11 @@ void					rb_node_destroy(t_rb_node *what);
 void					rb_subtree_destroy(t_rb_node *root,
 							void (*applyf)(t_key, t_data));
 
-void					btree_recurs_prefix(t_rb_node *root,
+void					rb_recurs_prefix(t_rb_node *root,
 							void (*applyf)(t_key, t_data));
-void					btree_recurs_infix(t_rb_node *root,
+void					rb_recurs_infix(t_rb_node *root,
 							void (*applyf)(t_key, t_data));
-void					btree_recurs_postfix(t_rb_node *root,
+void					rb_recurs_postfix(t_rb_node *root,
 							void (*applyf)(t_key, t_data));
 int						rb_level_count_recurs(t_rb_node *root);
 

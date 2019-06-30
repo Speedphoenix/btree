@@ -1,4 +1,3 @@
-#include "btree.h"
 #include "node.h"
 
 t_data				rb_remove(t_rb_tree *tree, t_key key)

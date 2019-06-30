@@ -1,4 +1,3 @@
-#include "btree.h"
 #include "node.h"
 #include <stdlib.h>
 
@@ -17,9 +16,7 @@ t_rb_tree	*rb_create_tree(t_compare_func compare)
 
 	rep = (t_rb_tree*)malloc(sizeof(t_rb_tree));
 	if (rep)
-	{
 		rb_init_tree(rep, compare);
-	}
 	return (rep);
 }
 

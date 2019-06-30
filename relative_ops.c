@@ -1,4 +1,3 @@
-#include "btree.h"
 #include "node.h"
 
 int			rb_rotate(t_rb_node *root, enum e_rb_direction dir)

@@ -1,5 +1,7 @@
-NAME			=	libbtree.a
-LIBNAME			=	btree
+NAME			=	btree
+LIBNAME			=	libbtree.a
+
+USERINCLUDE		=	rb_btree.h
 
 CC				=	gcc
 
@@ -8,6 +10,16 @@ AR				=	ar
 ARFLAGS			=	rc
 
 INDEXER			=	ranlib
+
+INSTALL			=	install
+
+# PREFIX is an environment variable, but if it is not set, then set default value
+ifeq ($(PREFIX),)
+	PREFIX		:= /usr
+endif
+
+LIBDEST			=	$(DESTDIR)$(PREFIX)/lib/
+INCLUDEDEST		=	$(DESTDIR)$(PREFIX)/include/
 
 WARNINGS		=	-Wall -Wextra								\
 #					-Werror
@@ -35,27 +47,34 @@ SRC				:=	basic_modifs.c								\
 
 OBJ				:=	$(SRC:.c=.o)
 
-
-LDLIBS			:=	-l$(LIBNAME)
-
 LDFLAGS			:=	-L.
-
-TSTINGLDLIBS	:=	
 
 RM				=	/bin/rm -f
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(NAME) install uninstall
 
-$(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
-	$(INDEXER) $(NAME)
+$(NAME): $(LIBNAME)
+
+$(LIBNAME): $(OBJ)
+	$(AR) $(ARFLAGS) $(LIBNAME) $(OBJ)
+	$(INDEXER) $(LIBNAME)
 
 all: $(NAME)
+
+install: $(LIBNAME)
+	$(INSTALL) -d $(LIBDEST)
+	$(INSTALL) -m 644 $(LIBNAME) $(LIBDEST)
+	$(INSTALL) -d $(INCLUDEDEST)
+	$(INSTALL) -m 644 $(USERINCLUDE) $(INCLUDEDEST)
+
+uninstall:
+	$(RM) $(LIBDEST)$(LIBNAME)
+	$(RM) $(INCLUDEDEST)$(USERINCLUDE)
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(LIBNAME)
 
 re: fclean $(NAME)

@@ -3,9 +3,9 @@
 
 # include <stddef.h>
 
-# define TRAVERSE_PREFIX 0
-# define TRAVERSE_INFIX 1
-# define TRAVERSE_POSTFIX 2
+# define TRAVERSE_PREFIX	0
+# define TRAVERSE_INFIX		1
+# define TRAVERSE_POSTFIX	2
 
 /*
 **	t_data MUST be a pointer type
@@ -34,9 +34,9 @@ t_rb_tree				*rb_create_tree(t_compare_func compare);
 void					rb_init_tree(t_rb_tree *what, t_compare_func compare);
 int						rb_tree_is_empty(t_rb_tree *container);
 t_data					rb_at(t_rb_tree *container, t_key key);
-void					btree_traverse(t_rb_tree *cont,
+void					rb_traverse(t_rb_tree *cont,
 							void (*applyf)(t_key, t_data));
-void					btree_traverse_meth(t_rb_tree *cont, unsigned method,
+void					rb_traverse_meth(t_rb_tree *cont, unsigned method,
 							void (*applyf)(t_key, t_data));
 int						rb_insert(t_rb_tree *tree, t_key key, t_data data);
 

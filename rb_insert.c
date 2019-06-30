@@ -1,6 +1,4 @@
-#include "btree.h"
 #include "node.h"
-#include "stdlib.h"
 
 /*
 **	Returns true (1) on success, false (0) on failure
@@ -13,7 +11,7 @@ int		rb_insert(t_rb_tree *tree, t_key key, t_data data)
 	new_elem = rb_create_node(key, data);
 	if (rb_stupid_insert(tree, new_elem) != new_elem)
 	{
-		free(new_elem);
+		rb_node_destroy(new_elem);
 		return (0);
 	}
 	rb_correct_insert(new_elem);

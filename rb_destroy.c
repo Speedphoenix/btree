@@ -1,6 +1,5 @@
-#include "btree.h"
 #include "node.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 void	rb_tree_vacate(t_rb_tree *tree,
 			void (*applyf)(t_key, t_data))
